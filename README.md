@@ -54,18 +54,29 @@ Além de organizar os arquivos, o site se diferencia por conectar as leituras di
 “Observamos que a ausência de projetos que divulguem abertamente o acesso aos livros afeta muitos dos estudantes brasileiros hoje porque com a rotina corrida, escola, cursos, trabalho, casa ( entre outros cenários possíveis ) se torna difícil abrir um momento para focar em leitura, pesquisa e semelhantes, gerando como consequência por muitos a defasagem e desânimo em relação às leituras obrigatórias de muitos dos vestibulares que temos hoje.” 
 
 11. **Referências**
+
 [Como estudar os livros pedidos no vestibular](https://g1.globo.com/sc/santa-catarina/especial-publicitario/guia-do-estudante/noticia/2022/10/20/como-estudar-os-livros-pedidos-no-vestibular.ghtml)
+
 [Estamos desaprendendo? Os riscos do excesso de informações](https://www.terra.com.br/vida-e-estilo/estamos-desaprendendo-os-riscos-do-excesso-de-informacoes,3dbadc51fb135c589ddd373f9bcb803bg2g28l8b.html)
+
 [Como o excesso de telas impacta a aprendizagem de jovens no Brasil](https://www.cnnbrasil.com.br/educacao/como-o-excesso-de-telas-impacta-a-aprendizagem-de-jovens-no-brasil/)
+
 ['Nativos digitais' não sabem buscar conhecimento na internet, diz OCDE](https://www.bbc.com/portuguese/geral-57286155)
+
 [Mês do Livro: veja 7 caminhos para formar leitores na era digital](https://www.cnnbrasil.com.br/educacao/mes-do-livro-veja-7-caminhos-para-formar-leitores-na-era-digital/)
+
 [Mês do Livro: veja 7 caminhos para formar leitores na era digital](https://www.bbc.com/portuguese/brasil-52250717)
+
 [Desigualdade social é o principal obstáculo à qualidade da educação no país](https://www.cnnbrasil.com.br/educacao/desigualdade-social-e-o-principal-obstaculo-a-qualidade-da-educacao-no-pais/)
+
 [Falta de apoio familiar e de recursos dificulta educação digital em escolas](https://www.cnnbrasil.com.br/educacao/falta-de-apoio-familiar-e-de-recursos-dificulta-educacao-digital-em-escolas/)
+
 [Redes sociais antes dos 13 anos podem custar até seis meses de aprendizagem, revela estudo](https://cnnportugal.iol.pt/redes-sociais/escola/redes-sociais-antes-dos-13-anos-podem-custar-ate-seis-meses-de-aprendizagem-revela-estudo/20260803/6a706fc8d34ed0733ba7dd95)
 
 Sites de Livros de Domínio Público
+
 [Domínio Público MEC](https://dominiopublico.mec.gov.br/pesquisa/PesquisaObraForm.jsp)
+
 [Baixa Livros](https://www.baixelivros.com.br/dominio-publico#google_vignette)
 
 
