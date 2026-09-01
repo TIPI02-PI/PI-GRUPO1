@@ -4,11 +4,11 @@ Tema Gerador: Tecnologias para Transformar Realidade: desenvolvendo soluções d
 Nome Projeto: A decidir.
 
 Nome Integrantes:
-Arlei B. dos Santos
-Andre C. Torres
-Gabriel do N. M. Guembla
-Grazielly G. Lacerda
-Sthefany da C. Moreira
+-Arlei B. dos Santos
+-Andre C. Torres
+-Gabriel do N. M. Guembla
+-Grazielly G. Lacerda
+-Sthefany da C. Moreira
 
 
 Tema de Interesse
