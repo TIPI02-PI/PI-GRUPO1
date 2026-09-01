@@ -19,7 +19,9 @@ Tema de Interesse
 O tema primordial escolhido pela nossa equipe foi uma plataforma online para junção de livros obrigatórios – de preferência em domínio público – para vestibulares com a implementação de uma inteligência artificial para auxiliar nas dúvidas e confusões que surgem ao decorrer dos estudos, já que pensamos ser importante facilitar a vida desses estudantes. Principalmente, aqueles com menores condições monetárias para investir nas obras solicitadas pelas bancas, e com pouco acesso a orientações de qualidade. 
 Desta forma, trazendo flexibilidade e praticidade para os candidatos, deixando tudo organizado em um só lugar.
 
-#Sobre o código criado
+-----------------------------------------------------------------
+
+# 💻 Sobre o código criado
 
 ## 📚 API - Sistema de Livros e Cadastros
 
