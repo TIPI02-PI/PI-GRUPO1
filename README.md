@@ -5,9 +5,13 @@ Nome Projeto: A decidir.
 
 Nome Integrantes:
 -Arlei B. dos Santos
+
 -Andre C. Torres
+
 -Gabriel do N. M. Guembla
+
 -Grazielly G. Lacerda
+
 -Sthefany da C. Moreira
 
 
