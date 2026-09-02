@@ -1,10 +1,9 @@
-# 📚 Sobre o PI l
+# 📚 Sobre o PI 
 Tema Gerador: Tecnologias para Transformar Realidade: desenvolvendo soluções digitais para a comunidade.
 
 Nome Projeto: A decidir.
 
 Nome Integrantes:
--Arlei B. dos Santos
 
 -Andre C. Torres
 
@@ -23,25 +22,34 @@ Desta forma, trazendo flexibilidade e praticidade para os candidatos, deixando t
 
 # 💻 Sobre o código criado
 
-## 📚 API - Sistema de Livros e Cadastros
+### API - Sistema de Livros e Cadastros
 
-## 📖 Sobre o Projeto
-Esta API RESTful foi desenvolvida em Node.js utilizando Express e banco de dados MySQL. O sistema gerencia o catálogo de livros de estudo e o cadastro de usuários, implementando autenticação segura por meio de JSON Web Tokens (JWT) e criptografia/validação de permissões de perfil.
 
-## 🛠️ Tecnologias Utilizadas
-- **Runtime:** Node.js (com suporte a ES Modules)
-- **Framework:** Express.js
-- **Banco de Dados:** MySQL / MariaDB
-- **Segurança & Utilitários:** `jsonwebtoken` (JWT), `dotenv` para variáveis de ambiente
+## INTRODUÇÃO
+O presente trabalho tem como objetivo documentar as funcionalidades do
+módulo de Cadastro do sistema, especificando as operações disponíveis — Login, Listar
+Cadastros, Buscar Cadastro por ID, Cadastrar Cadastro, Atualizar Cadastro e Excluir
+Cadastro — bem como os critérios de acesso associados a cada uma delas.
+Considerando que o sistema manipula dados sensíveis, todas as funcionalidades exigem
+autenticação prévia, sendo o controle de acesso diferenciado conforme o perfil do
+usuário. Operações de consulta que envolvem dados sigilosos (Listar Cadastros e Buscar
+Cadastro por ID), bem como a exclusão de registros, são restritas exclusivamente a
+usuários com perfil de Administrador, garantindo maior segurança e evitando ações
+indevidas por parte de usuários comuns. Já as operações de criação e atualização de
+cadastro podem ser realizadas por qualquer usuário devidamente autenticado, desde
+que possua perfil e senha previamente cadastrados.
+Dessa forma, este documento busca apresentar de maneira clara a relação entre cada
+funcionalidade do sistema, a necessidade (ou não) de autenticação e o nível de
+permissão exigido para sua execução, servindo como referência para o entendimento
+das regras de negócio e da política de controle de acesso adotada.
 
-## 🗄️ Estrutura e Configuração (.env)
-O sistema requer um arquivo `.env` na raiz do projeto configurado com os parâmetros de conexão do banco e a chave de acesso do token:
+### PLANEJAMENTO
 
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=siteLivros
-DB_PORT=4000
-
-JWT_SECRET= chavedeacesso
+Diz-se a respeito da execução das funcionalidades hoje presentes no projeto ( acesso ao
+conteúdo, login ).
+- Login
+- Listar Cadastros
+- Buscar Cadastro por Id
+- Cadastrar Cadastro
+- Atualizar Cadastro
+- Excluir Cadastro
