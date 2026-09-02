@@ -4,7 +4,8 @@ const conexao = await mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "siteLivros"
+    database: "livraria"
+
 })
 
-export default conexao
+export default conexao;
