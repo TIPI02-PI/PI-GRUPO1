@@ -25,7 +25,7 @@ Desta forma, trazendo flexibilidade e praticidade para os candidatos, deixando t
 ### API - Sistema de Livros e Cadastros
 
 
-## INTRODUÇÃO
+### INTRODUÇÃO
 O presente trabalho tem como objetivo documentar as funcionalidades do
 módulo de Cadastro do sistema, especificando as operações disponíveis — Login, Listar
 Cadastros, Buscar Cadastro por ID, Cadastrar Cadastro, Atualizar Cadastro e Excluir
