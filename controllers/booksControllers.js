@@ -5,7 +5,7 @@ export const listarLivros = async (req, res) => {
         const [livros] = await conexao.query(
             "SELECT * FROM book"
         )
-        res.status(200).json(book)
+        res.status(200).json(livros)
     } catch (erro) {
         res.status(500).json({ erro: erro.message })
     }
@@ -14,7 +14,7 @@ export const listarLivros = async (req, res) => {
 export const buscarLivro = async (req, res) => {
     try {
         const [validacao] = await conexao.query(
-            "SELECT * FROM book WHERE id = ?",
+            "SELECT * FROM book WHERE book_id = ?",
             [req.params.id]
         )
 
@@ -30,11 +30,11 @@ export const buscarLivro = async (req, res) => {
 
 export const cadastrarLivro = async (req, res) => {
     try {
-        const { titulo, autor, editora, ano_lancamento } = req.body
+        const { titulo, data_lancamento, id_autor } = req.body
 
         await conexao.query(
-            "INSERT INTO book (titulo, autor, editora, ano_lancamento) VALUES (?, ?, ?, ?)",
-            [titulo, autor, editora, ano_lancamento]
+            "INSERT INTO book (book_title, book_release_date, fk_author_id) VALUES (?, ?, ?)",
+            [titulo, data_lancamento, id_autor]
         )
 
         res.status(201).json({ mensagem: "Livro cadastrado com sucesso!" })
@@ -45,14 +45,18 @@ export const cadastrarLivro = async (req, res) => {
 
 export const atualizarLivro = async (req, res) => {
     try {
-        const { titulo, autor, editora, ano_lancamento } = req.body
+        const { titulo, data_lancamento, id_autor } = req.body
 
-        await conexao.query(
-            "UPDATE book SET titulo = ?, autor = ?, editora = ?, ano_lancamento = ? WHERE id = ?",
-            [titulo, autor, editora, ano_lancamento, req.params.id]
+        const [resultado] = await conexao.query(
+            "UPDATE book SET book_title = ?, book_release_date = ?, fk_author_id = ? WHERE book_id = ?",
+            [titulo, data_lancamento, id_autor, req.params.id]
         )
 
-        res.status(200).json({ mensagem: "Livro 100% atualizado" })
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({ mensagem: "Livro não encontrado." })
+        }
+
+        res.status(200).json({ mensagem: "Livro atualizado com sucesso!" })
     } catch (erro) {
         res.status(500).json({ erro: erro.message })
     }
@@ -60,16 +64,22 @@ export const atualizarLivro = async (req, res) => {
 
 export const excluirLivro = async (req, res) => {
     try {
-        await conexao.query(
-            "DELETE FROM book WHERE id = ?",
+        const [resultado] = await conexao.query(
+            "DELETE FROM book WHERE book_id = ?",
             [req.params.id]
         )
 
-        res.status(200).json({ mensagem: "Livro excluído." })
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({ mensagem: "Livro não encontrado." })
+        }
+
+        res.status(200).json({ mensagem: "Livro excluído com sucesso." })
     } catch (erro) {
         res.status(500).json({ erro: erro.message })
     }
 }
+
+
 
 
 
