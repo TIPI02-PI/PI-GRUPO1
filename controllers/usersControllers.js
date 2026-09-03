@@ -63,11 +63,11 @@ export const buscarCadastroPorId = async (req, res) => {
 
 export const cadastrarCadastro = async (req, res) => {
     try {
-        const { nome, usuario, senha } = req.body
+        const { user_name, user_lastname, user_cpf, user_birthdate, user_gender, user_email, user_password, user_type } = req.body
 
         await conexao.query(
-            "INSERT INTO cadastros (nome, usuario, senha) VALUES (?, ?, ?)",
-            [nome, usuario, senha]
+            "INSERT INTO users (user_name, user_lastname, user_cpf, user_birthdate, user_gender, user_email, user_password, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            [user_name, user_lastname, user_cpf, user_birthdate, user_gender, user_email, user_password, user_type]
         )
 
         res.status(201).json({ mensagem: "Usuário cadastrado com sucesso!" })
@@ -116,7 +116,6 @@ export const excluirCadastro = async (req, res) => {
         res.status(500).json({ erro: erro.message })
     }
 }
-
 
 
 
