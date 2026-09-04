@@ -9,5 +9,5 @@ const app = express()
 app.use(express.json())
 
 
-app.use("/livros", booksRouters)
-app.use("/usuarios", usersRouters)
+app.use("/books", booksRouters)
+app.use("/users", usersRouters)
