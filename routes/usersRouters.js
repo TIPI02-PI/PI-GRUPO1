@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/users', login);
 
-router.get('/', listarCadastros);
+router.get('/users', listarCadastros);
 router.get('/users/:id', buscarCadastroPorId);
 router.post('/users/:id', cadastrarCadastro);
 router.put('/users/:id', atualizarCadastro)
