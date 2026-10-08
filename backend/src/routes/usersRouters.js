@@ -11,7 +11,7 @@ router.get('/users', listarCadastros);
 router.get('/users/:id', buscarCadastroPorId);
 router.post('/users/:id', cadastrarCadastro);
 router.put('/users/:id', atualizarCadastro)
-router.patch('/users/:id', );
+// router.patch('/users/:id', );
 router.delete('/users/:id', excluirCadastro);
 
 export default router;

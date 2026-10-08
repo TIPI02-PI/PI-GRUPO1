@@ -2,6 +2,10 @@ CREATE DATABASE IF NOT EXISTS nonename_db
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
+
+-- Deleting database.
+DROP DATABASE IF EXISTS nomename_db;
+
 SHOW DATABASES;
 
 USE nonename_db;
