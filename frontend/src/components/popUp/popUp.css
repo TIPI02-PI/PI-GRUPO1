@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Geist:ital,wght@0,100..900;1,100..900&display=swap');
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: 'Geist', sans-serif;
+}
+
+.popup-container {
+    background: linear-gradient(#14111f 1%, #583D71 100%);
+    width: 340px;
+    height: 320px;
+    border-radius: 20px;
+    border: 1px solid #2A1B3A;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.popup-button {
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px;
+}
+
+.popup-button button {
+    background-color: #272336;
+    border: 1px solid #1E1A2B;
+    border-radius: 14px;
+    width: 38px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.popup-button button:hover {
+    background-color: #1E1A2B;
+}
+
+.popup-button p {
+    font-size: 10px;
+    font-weight: bolder;
+    color: #8F879B;
+    border-radius: 100%;
+    border: 2px solid #8F879B;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    margin: 0;
+}
+
+.popup-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: flex-end;
+    height: 70%;
+}
+
+.popup-text .firstText {
+    color: #E2A838;
+    font-family: 'Fraunces', sans-serif;
+    font-size: 0.9rem;
+}
+
+.popup-text h3 {
+    margin: 6px 0;
+    color: #ffffff;
+    font-size: 1.15rem;
+}
+
+.popup-text .secondText {
+    margin: 0 20px;
+    color: #CDB7E0;
+    font-size: 0.85rem;
+    line-height: 1.35;
+}
+
+.popup-text .lastText {
+    color: #8F879B;
+    margin-top: 18px;
+    font-size: 11px;
+}
+
+.erroicon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 0;
+}
+
+.popup-erroIcon {
+    display: flex;
+    justify-content: center;
+}
+
+.btnAgain {
+    background-color: #E2A838;
+    border: none;
+    width: 250px;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 0;
+}
+
+.buttonError-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
