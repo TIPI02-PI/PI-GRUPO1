@@ -4,7 +4,11 @@ COLLATE utf8mb4_unicode_ci;
 
 
 -- Deleting database.
+<<<<<<<< HEAD:backend/dlirios_db.sql
 DROP DATABASE IF EXISTS dlirios_db;
+========
+DROP DATABASE IF EXISTS nomename_db;
+>>>>>>>> 43d2ee58b668580f2545cf1d10ea05e8256ba628:backend/livraria.sql
 
 SHOW DATABASES;
 
