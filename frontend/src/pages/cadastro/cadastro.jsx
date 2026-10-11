@@ -1,4 +1,5 @@
 import './cadastro.css'
+import { Link } from 'react-router-dom'
 import Backgroundicon from '../../assets/backgroundIconCadastro.svg'
 import User from '../../assets/user.svg'
 import Password from '../../assets/password.svg'
@@ -188,7 +189,7 @@ export default function Cadastro() {
 
           <footer className="register-footer">
             <p>
-              Já tem uma conta? <a href="#cadastro">Entre no jardim</a>
+              Já tem uma conta? <Link to="/">Entre no jardim</Link>
             </p>
           </footer>
         </div>

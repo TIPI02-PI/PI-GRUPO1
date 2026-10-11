@@ -1,0 +1,31 @@
+
+
+.loginBtn {
+
+    padding-inline: 20px; 
+    padding-block: 5px;
+
+
+    color: white;
+
+    background-color:black;
+
+    border-radius: 2px;
+
+}
+
+.registerBtn {
+
+    padding-inline: 20px; 
+    padding-block: 5px;
+
+    margin-inline: 10px 0px;
+
+
+    color: white;
+
+    background-color:black;
+
+    border-radius: 2px;
+
+}

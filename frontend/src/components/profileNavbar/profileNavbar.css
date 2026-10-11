@@ -1,0 +1,132 @@
+.user-profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.user-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.user-profile-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.user-profile-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #6F528B;
+  background-color: #2D213E;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px;
+  color: #E8C67E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.user-info small {
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  color: #9C90AC;
+  font-weight: 500;
+}
+
+.user-info strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: #F5F1EE;
+  white-space: nowrap;
+}
+
+.arrow-icon {
+  transition: transform 0.2s;
+}
+
+.arrow-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.profile-dropdown-content {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 250px;
+  background-color: #15121F;
+  border: 1px solid #30213F;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 14px !important; 
+  box-sizing: border-box !important;
+}
+
+.user-handle-row {
+  margin-top: 0;
+  border-bottom: 1px solid #281C35;
+}
+
+.user-handle {
+  font-size: 14px;
+  color: #9C90AC;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #9C90AC;
+  font-weight: 600;
+}
+
+.detail-value {
+  font-size: 13px;
+  color: #CDB7E0;
+  word-break: break-all;
+}
+
+.badge-vestibular {
+  display: inline-block;
+  background-color: rgba(226, 168, 56, 0.12);
+  color: #E8C67E;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  width: fit-content;
+}

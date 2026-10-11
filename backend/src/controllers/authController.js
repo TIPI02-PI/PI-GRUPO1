@@ -86,11 +86,42 @@ export const googleLogin = async (req, res) => {
         const { email, given_name, family_name, sub: google_id, picture } = googlePayload; 
 
         // Check if user is in our database
-        const [users] = await pool.query()
+        const [users] = await pool.query('SELECT * FROM user_tb WHERE user_email = ?', [email]);
+        
+        if (users.length > 0 ) {
+            //  User exists! Generate token and log them in 
+            const user = users[0];
+
+            //  Optional: Update their google_id and photo if it's missing
+            if (!user.user_google_id) {
+                await pool.query('UPDATE user_tb SET user_google_id = ?, user_photo_url = ? WHERE user_id = ?', [google_id, picture, user.user_id]);
+            }
+
+            const jwtToken = generateToken(user.user_id, user.user_role);
+            return res.json({ message: 'Google login sucessful', token: jwtToken, user: {   name: user.user_first_name, email: user.user_email  }   });
+
+
+        
+        } else {
+            //  User does NOT exist. Tell frontend to send them to registration!
+            return res.status(202).json({
+                message: 'Needs missing data to complete registration',
+                action: 'needs_registration',
+                prefillData: { 
+                    first_name: given_name,
+                    last_name: family_name,
+                    email: email,
+                    google_id: google_id,
+                    photo_url: picture,
+                    auth_provider: 'google'
+
+                }
+            });
+        }
 
     }catch (error) {
+        res.status(401).json({  error: 'Google verification failed' });
 
     }
 
-
-}
+};

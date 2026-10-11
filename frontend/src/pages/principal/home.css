@@ -1,0 +1,744 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Geist:wght@100..900&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #0B0B10, #171120, #2A1B3A);
+  color: #F5F1EE;
+  font-family: 'Geist', sans-serif;
+}
+
+.home-container *,
+.home-container *::before,
+.home-container *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.home-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  min-height: 100vh;
+  border-right: 1px solid #30213F;
+  background-color: rgba(17, 14, 25, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 32px 20px 28px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sidebar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-caption {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: #9C90AC;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.nav-link {
+  display: flex;
+  height: 46px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid #110E19;
+  background-color: #110E19;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #CDB7E0;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #191422;
+  border-color: #2A1B3A;
+  color: #F5F1EE;
+}
+
+.nav-link.active {
+  border-color: rgba(102, 74, 128, 0.31);
+  background-color: #2D213E;
+  font-weight: 600;
+  color: #F5F1EE;
+}
+
+.nav-icon {
+  flex-shrink: 0;
+}
+
+.nav-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #E2A838;
+}
+
+/* Card de Progresso */
+.progress-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 16px;
+  border: 1px solid #30213F;
+  background-color: #15121F;
+  padding: 16px;
+}
+
+.progress-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-card-header h2 {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.progress-status {
+  font-size: 11px;
+  color: #CDB7E0;
+}
+
+.progress-bar {
+  height: 6px;
+  width: 100%;
+  border-radius: 999px;
+  background-color: #342842;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background-color: #E8C67E;
+  transition: width 0.3s;
+}
+
+.progress-hint {
+  font-size: 10px;
+  color: #9C90AC;
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background-color: #30213F;
+}
+
+.sidebar-quote {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #9C90AC;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+  font-size: 13px;
+  color: #CDB7E0;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.footer-link:hover {
+  color: #E2A838;
+}
+
+/* Conteúdo Principal */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Top Header */
+.top-header {
+  display: flex;
+  height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #30213F;
+  padding: 0 36px;
+}
+
+.search-bar {
+  display: flex;
+  height: 44px;
+  width: 100%;
+  max-width: 560px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  border: 1px solid #30213F;
+  background-color: #15121F;
+  padding: 0 16px;
+}
+
+.search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #CDB7E0;
+}
+
+.search-bar input::placeholder {
+  color: #9C90AC;
+}
+
+.search-shortcut {
+  font-size: 11px;
+  color: #9C90AC;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid #2A1B3A;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: #15121F;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 36px 24px;
+}
+
+.hero-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.hero-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 46px;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.hero-subtitle {
+  font-size: 14px;
+  color: #CDB7E0;
+  margin-top: 6px;
+}
+
+.shelf-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #E8C67E;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.shelf-link:hover {
+  opacity: 0.8;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.tab-btn {
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #0B0B10;
+  color: #9C90AC;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tab-btn.active {
+  background-color: #2D213E;
+  color: #F5F1EE;
+  font-weight: 600;
+}
+
+.dropdown-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.dropdown-btn {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid #30213F;
+  background-color: #15121F;
+  padding: 0 14px;
+  font-size: 12px;
+  color: #CDB7E0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dropdown-btn:hover {
+  border-color: #E2A838;
+}
+
+/* Área de Livros */
+.catalog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 0 36px 40px;
+}
+
+.featured-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Card Destaque */
+.featured-card {
+  flex: 1;
+  min-width: 320px;
+  min-height: 376px;
+  border-radius: 20px;
+  border: 1px solid rgba(99, 69, 124, 0.44);
+  background: linear-gradient(135deg, #39264E, #191321);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-aura,
+.bg-orbit {
+  position: absolute;
+  display: none;
+}
+
+.featured-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.featured-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #E8C67E;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.featured-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+.featured-author {
+  font-size: 15px;
+  color: #CDB7E0;
+  margin-top: 4px;
+}
+
+.category-tags {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+
+.tag-item {
+  border-radius: 8px;
+  background-color: rgba(205, 183, 224, 0.07);
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #CDB7E0;
+}
+
+.featured-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #CDB7E0;
+  max-width: 760px;
+}
+
+.featured-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.btn-primary {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid #E2A838;
+  background-color: #E2A838;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #17101E;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid #69517C;
+  background-color: #21182E;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #F5F1EE;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: #E2A838;
+}
+
+.featured-details {
+  font-size: 11px;
+  color: #9C90AC;
+}
+
+/* Card Leitura Atual */
+.reading-card {
+  width: 292px;
+  min-height: 376px;
+  border-radius: 20px;
+  border: 1px solid #30213F;
+  background-color: #15121F;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.reading-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reading-card-header h2 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.reading-book-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.reading-author {
+  font-size: 12px;
+  color: #CDB7E0;
+  margin-top: 4px;
+}
+
+.reading-chapter {
+  font-size: 10px;
+  color: #9C90AC;
+}
+
+.reading-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-labels span {
+  font-size: 12px;
+  color: #CDB7E0;
+}
+
+.progress-labels strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: #E8C67E;
+}
+
+.progress-count {
+  font-size: 11px;
+  color: #9C90AC;
+}
+
+.reading-notes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #CDB7E0;
+}
+
+.btn-resume {
+  display: flex;
+  height: 41px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(110, 81, 128, 0.38);
+  background-color: #2D213E;
+  font-size: 13px;
+  font-weight: 600;
+  color: #F5F1EE;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: auto;
+}
+
+.btn-resume:hover {
+  background-color: #382B4E;
+}
+
+/* Seção Recomendações */
+.recommendations-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.section-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.section-subtitle {
+  font-size: 12px;
+  color: #9C90AC;
+  margin-top: 4px;
+}
+
+.explore-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #E8C67E;
+  text-decoration: none;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.book-cover {
+  position: relative;
+  height: 190px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #30213F;
+  background-color: #15121F;
+}
+
+.bookmark-btn {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 8px;
+  border: 1px solid #30213F;
+  background-color: #1E182B;
+  cursor: pointer;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.book-title {
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #F5F1EE;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-author {
+  font-size: 12px;
+  color: #CDB7E0;
+}
+
+.book-category {
+  font-size: 10px;
+  color: #9C90AC;
+}
+
+.banner-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 12px;
+  border: 1px solid #30213F;
+  background-color: #15121F;
+  padding: 18px 22px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.banner-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.banner-text h3 {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.banner-text p {
+  font-size: 12px;
+  color: #9C90AC;
+  margin-top: 4px;
+}
+
+.banner-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #E8C67E;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.user-profile-wrapper {
+  position: relative;
+}
