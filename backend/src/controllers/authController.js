@@ -6,7 +6,7 @@ import { verifyGoogleToken } from '../services/googleService.js';
 //  ---- 1 LOCAL REGISTRATION ---
 export const register = async (req, res) => {
     try {
-        const { first_name, last_name, cpf, birth_date, genre, cep, patio, number, complement, reference, district, city, state, uf, email, password, auth_provider, google_id, photo_url } = res.body;
+        const { first_name, last_name, cpf, birth_date, genre, cep, patio, number, complement, reference, district, city, state, uf, email, password, auth_provider, google_id, photo_url } = req.body;
 
         //  Check if user already exists (by email or CPF)
         const [ existingUsers ] = await pool.query(

@@ -3,18 +3,18 @@ import cors from 'cors';
 import authRoutes from './routes/authRouters.js'; //    Import the routes 
 // import connection from "./config/db.js"
 
-const app = express()
+const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 
 // --- Register Routes ---
-app.use('api/auth', authRoutes); // <-- All auth routes will now start with /api/auth 
+app.use('/api/auth', authRoutes); // <-- All auth routes will now start with /api/auth 
 
 
 
-export default app
+export default app;
 
 
 

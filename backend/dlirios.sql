@@ -4,11 +4,11 @@ COLLATE utf8mb4_unicode_ci;
 
 
 -- Deleting database.
-<<<<<<<< HEAD:backend/dlirios_db.sql
+-- <<<<<<<< HEAD:backend/dlirios_db.sql
 DROP DATABASE IF EXISTS dlirios_db;
 ========
 DROP DATABASE IF EXISTS nomename_db;
->>>>>>>> 43d2ee58b668580f2545cf1d10ea05e8256ba628:backend/livraria.sql
+-- >>>>>>>> 43d2ee58b668580f2545cf1d10ea05e8256ba628:backend/livraria.sql
 
 SHOW DATABASES;
 
@@ -80,7 +80,7 @@ CREATE TABLE book(
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     book_title VARCHAR(100) NOT NULL,
     book_release_date DATE NOT NULL,
-    fk_author_id INT NOT NULL,
+    fk_author_id INT NOT NULL, 
 
     FOREIGN KEY (fk_author_id)
         REFERENCES author(author_id)
@@ -93,7 +93,7 @@ INSERT INTO users (
     user_first_name,
     user_last_name,
     user_cpf,
-    user_birth_date
+    user_birth_date,
     user_genre,
 
     user_address_cep,
