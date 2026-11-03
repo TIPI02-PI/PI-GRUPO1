@@ -22,8 +22,6 @@ Desta forma, trazendo flexibilidade e praticidade para os candidatos, deixando t
 
 # 💻 Sobre o código criado
 
-### API - Sistema de Livros e Cadastros
-
 
 ### INTRODUÇÃO
 O presente trabalho tem como objetivo documentar as funcionalidades do
@@ -42,6 +40,11 @@ Dessa forma, este documento busca apresentar de maneira clara a relação entre 
 funcionalidade do sistema, a necessidade (ou não) de autenticação e o nível de
 permissão exigido para sua execução, servindo como referência para o entendimento
 das regras de negócio e da política de controle de acesso adotada.
+
+### Sobre a API
+Desenvolvemos uma API própria para o armazenamento dos livros, onde o objetivo
+está sendo sincronizar com o banco de dados e utilizar a biblioteca react-pdf para
+a leitura dos nossos livros no próprio site.
 
 ### PLANEJAMENTO
 
