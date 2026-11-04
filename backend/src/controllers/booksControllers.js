@@ -144,7 +144,6 @@ export const excluirLivro = async (req, res) => {
 
 
 
-
 // import connection from "../config/db.js"
 
 // export const listarLivros = async (req, res) => {
