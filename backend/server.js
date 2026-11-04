@@ -22,7 +22,6 @@ app.get('/', (req, res) => {
         message: "D'lírios API is running!"
 
     })
-
 })
 
 app.listen(PORT, async () => {
