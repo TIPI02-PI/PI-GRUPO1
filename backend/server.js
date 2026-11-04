@@ -1,11 +1,19 @@
 import dotenv from 'dotenv';
 import app from './src/app.js'
 import pool from './src/config/db.js';
+import express from 'express';
+
+import booksRoutes from './src/routes/booksRouters.js';
 
 dotenv.config();
 
 
 const PORT = process.env.EXPRESS_PORT || 3000;
+
+//static route for API
+app.use('/static', express.static('src/public'))
+
+app.use('/api', booksRoutes)
 
 // Heath check
 app.get('/', (req, res) => {
@@ -14,7 +22,6 @@ app.get('/', (req, res) => {
         message: "D'lírios API is running!"
 
     })
-
 })
 
 app.listen(PORT, async () => {
