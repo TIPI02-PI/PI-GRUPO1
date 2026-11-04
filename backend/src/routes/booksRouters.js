@@ -21,7 +21,6 @@ export default booksRoutes
 
 
 
-
 // import { Router } from 'express';
 // import { listarLivros, buscarLivro, cadastrarLivro, atualizarLivro,
 // excluirLivro } from '../controllers/booksControllers.js'
