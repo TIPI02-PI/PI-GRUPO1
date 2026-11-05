@@ -1,4 +1,3 @@
--- Criação do banco de dados e modelo físico completo
 
 CREATE TABLE user_tb (
     id INT AUTO_INCREMENT PRIMARY KEY,
