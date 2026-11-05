@@ -19,3 +19,7 @@
 [How can I create and switch to a new branch at the same time in Git](https://share.google/aimode/fJHokg1WEp066bHIA)
 
 [How do I generate a cryptographically secure JWT secret key variable?](https://share.google/aimode/p1nJCBaZVJzGcMo7y)
+
+
+
+[What are the language codes?](https://share.google/aimode/8LmxMpDmFKjBXBOtt)

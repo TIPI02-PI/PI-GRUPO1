@@ -3,6 +3,8 @@ import cors from 'cors';
 import authRoutes from './routes/authRouters.js'; //    Import the routes 
 // import connection from "./config/db.js"
 
+import booksRoutes from './routes/booksRouters.js'
+
 const app = express();
 
 // Middlewares
@@ -11,7 +13,9 @@ app.use(express.json());
 
 // --- Register Routes ---
 app.use('/api/auth', authRoutes); // <-- All auth routes will now start with /api/auth 
+app.use('/api/books', booksRoutes); // <-- All book routes will now start with /api/books
 
+// --- Error Handling Middleware ---
 
 
 export default app;
