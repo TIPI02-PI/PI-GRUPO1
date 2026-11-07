@@ -35,12 +35,11 @@ export const register = async (req, res) => {
         res.status(201).json({message: 'User created sucessfully', token });
 
     }   catch (error) {
-        console.error(error);
+        console.error(`Registration Error: ${error}`);
         res.status(500).json({ error: 'Internal server error' });
 
     }
 }
-
 
 
 
@@ -51,7 +50,7 @@ export const login = async (req, res) => {
         const { email, password } = req.body;
         
         const [ users ] = await pool.query(
-            `SELECT FROM user_tb WHERE user_email = ?`, [email]);
+            `SELECT * FROM user_tb WHERE user_email = ?`, [email]);
             if (users.length === 0) 
                 return res.status(401).json({ error: 'Invalid credentials'});
             const user = users[0];
@@ -69,6 +68,7 @@ export const login = async (req, res) => {
 
 
     } catch (error) {
+        console.error(`Login Error: ${error}`); // This will print the real error to the terminal.
         res.status(500).json({  error: 'Internal server error'  });
 
 
@@ -120,6 +120,7 @@ export const googleLogin = async (req, res) => {
         }
 
     }catch (error) {
+        console.error(`Google Login Error: ${error}`);
         res.status(401).json({  error: 'Google verification failed' });
 
     }
