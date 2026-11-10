@@ -1,19 +1,21 @@
 import { Router } from 'express'
 import { 
-  listarLivros, 
-  buscarLivro, 
-  cadastrarLivro, 
-  atualizarLivro, 
-  excluirLivro 
+  getBooks, 
+  getBookById, 
+  createBook, 
+  createBooksBatch, 
+  updateBook, 
+  deleteBook 
 } from '../controllers/booksControllers.js'
 
 const booksRoutes = Router()
 
-booksRoutes.get('/books', listarLivros)
-booksRoutes.get('/books/:id', buscarLivro)
-booksRoutes.post('/books', cadastrarLivro)
-booksRoutes.put('/books/:id', atualizarLivro)
-booksRoutes.delete('/books/:id', excluirLivro)
+booksRoutes.get('/books', getBooks)
+booksRoutes.get('/books/:id', getBookById)
+booksRoutes.post('/books', createBook)
+booksRoutes.post('/books/batch', createBooksBatch)
+booksRoutes.put('/books/:id', updateBook)
+booksRoutes.delete('/books/:id', deleteBook)
 
 export default booksRoutes
 
