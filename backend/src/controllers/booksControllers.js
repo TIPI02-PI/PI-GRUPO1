@@ -1,33 +1,33 @@
 import pool from '../config/db.js'
 
-// listar todos os livros
-export const listarLivros = async (req, res) => {
+// Get all books
+export const getBooks = async (req, res) => {
   try {
-    const [livros] = await pool.query('SELECT * FROM books')
-    res.status(200).json(livros)
+    const [books] = await pool.query('SELECT * FROM books_tb')
+    res.status(200).json(books)
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao buscar livros', error: error.message })
+    res.status(500).json({ message: 'Error fetching books', error: error.message })
   }
 }
 
-// buscar livro por ID
-export const buscarLivro = async (req, res) => {
+// Get book by ID
+export const getBookById = async (req, res) => {
   try {
     const { id } = req.params
-    const [rows] = await pool.query('SELECT * FROM books WHERE book_id = ?', [id])
+    const [rows] = await pool.query('SELECT * FROM books_tb WHERE book_id = ?', [id])
 
     if (rows.length === 0) {
-      return res.status(404).json({ message: 'Livro não encontrado' })
+      return res.status(404).json({ message: 'Book not found' })
     }
 
     res.status(200).json(rows[0])
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao buscar livro', error: error.message })
+    res.status(500).json({ message: 'Error fetching book', error: error.message })
   }
-};
+}
 
-// cadastrar novo livro
-export const cadastrarLivro = async (req, res) => {
+// Create a new book (single)
+export const createBook = async (req, res) => {
   try {
     const {
       book_isbn,
@@ -38,18 +38,19 @@ export const cadastrarLivro = async (req, res) => {
       book_year_original_publication,
       book_year_edition_publication,
       book_url_cover,
-      book_language,
+      book_url_download_pdf,
       book_format,
       book_page_number,
-      book_genre
+      book_genre,
+      language_id
     } = req.body
 
     const query = `
-      INSERT INTO books (
+      INSERT INTO books_tb (
         book_isbn, book_title, book_subtitle, book_author, book_publisher,
         book_year_original_publication, book_year_edition_publication,
-        book_url_cover, book_language, book_format, book_page_number, book_genre
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        book_url_cover, book_url_download_pdf, book_format, book_page_number, book_genre, language_id
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `
 
     const [result] = await pool.query(query, [
@@ -61,20 +62,42 @@ export const cadastrarLivro = async (req, res) => {
       book_year_original_publication,
       book_year_edition_publication,
       book_url_cover,
-      book_language,
+      book_url_download_pdf,
       book_format,
       book_page_number,
-      book_genre
+      book_genre,
+      language_id
     ])
 
-    res.status(201).json({ message: 'Livro cadastrado com sucesso!', book_id: result.insertId })
+    res.status(201).json({ message: 'Book successfully registered!', book_id: result.insertId })
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao cadastrar livro', error: error.message })
+    res.status(500).json({ message: 'Error registering book', error: error.message })
   }
-};
+}
 
-// atualizar livro existente
-export const atualizarLivro = async (req, res) => {
+// Create multiple books (batch insertion / JSON array)
+export const createBooksBatch = async (req, res) => {
+  try {
+    const books = Array.isArray(req.body) ? req.body : [req.body]
+
+    if (!books || books.length === 0) {
+      return res.status(400).json({ message: 'No books provided for registration.' })
+    }
+
+    for (const book of books) {
+      await pool.query('INSERT INTO books_tb SET ?', [book])
+    }
+
+    res.status(201).json({
+      message: `${books.length} book(s) successfully registered!`
+    })
+  } catch (error) {
+    res.status(500).json({ message: 'Error registering books in batch', error: error.message })
+  }
+}
+
+// Update existing book
+export const updateBook = async (req, res) => {
   try {
     const { id } = req.params
     const {
@@ -86,17 +109,16 @@ export const atualizarLivro = async (req, res) => {
       book_year_original_publication,
       book_year_edition_publication,
       book_url_cover,
-      book_language,
+      book_url_download_pdf,
       book_format,
       book_page_number,
-      book_genre
+      book_genre,
+      language_id
     } = req.body
 
     const query = `
-      UPDATE books SET
-        book_isbn = ?, book_title = ?, book_subtitle = ?, book_author = ?, book_publisher = ?,
-        book_year_original_publication = ?, book_year_edition_publication = ?,
-        book_url_cover = ?, book_language = ?, book_format = ?, book_page_number = ?, book_genre = ?
+      UPDATE books_tb SET
+        book_isbn = ?, book_title = ?, book_subtitle = ?, book_author = ?, book_publisher = ?, book_year_original_publication = ?, book_year_edition_publication = ?, book_url_cover = ?, book_url_download_pdf = ?, book_format = ?, book_page_number = ?, book_genre = ?, language_id = ?
       WHERE book_id = ?
     `
 
@@ -109,38 +131,186 @@ export const atualizarLivro = async (req, res) => {
       book_year_original_publication,
       book_year_edition_publication,
       book_url_cover,
-      book_language,
+      book_url_download_pdf,
       book_format,
       book_page_number,
       book_genre,
+      language_id,
       id
     ])
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({ message: 'Livro não encontrado para atualização' })
+      return res.status(404).json({ message: 'Book not found for update' })
     }
 
-    res.status(200).json({ message: 'Livro atualizado com sucesso!' })
+    res.status(200).json({ message: 'Book successfully updated!' })
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao atualizar livro', error: error.message })
+    res.status(500).json({ message: 'Error updating book', error: error.message })
   }
 }
 
-// deletar livro por id
-export const excluirLivro = async (req, res) => {
+// Delete book by ID
+export const deleteBook = async (req, res) => {
   try {
     const { id } = req.params
-    const [result] = await pool.query('DELETE FROM books WHERE book_id = ?', [id])
+    const [result] = await pool.query('DELETE FROM books_tb WHERE book_id = ?', [id])
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({ message: 'Livro não encontrado para exclusão' })
+      return res.status(404).json({ message: 'Book not found for deletion' })
     }
 
-    res.status(200).json({ message: 'Livro excluído com sucesso!' })
+    res.status(200).json({ message: 'Book successfully deleted!' })
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao excluir livro', error: error.message })
+    res.status(500).json({ message: 'Error deleting book', error: error.message })
   }
 }
+
+
+
+
+// import pool from '../config/db.js'
+
+// // listar todos os livros
+// export const listarLivros = async (req, res) => {
+//   try {
+//     const [livros] = await pool.query('SELECT * FROM books')
+//     res.status(200).json(livros)
+//   } catch (error) {
+//     res.status(500).json({ message: 'Erro ao buscar livros', error: error.message })
+//   }
+// }
+
+// // buscar livro por ID
+// export const buscarLivro = async (req, res) => {
+//   try {
+//     const { id } = req.params
+//     const [rows] = await pool.query('SELECT * FROM books WHERE book_id = ?', [id])
+
+//     if (rows.length === 0) {
+//       return res.status(404).json({ message: 'Livro não encontrado' })
+//     }
+
+//     res.status(200).json(rows[0])
+//   } catch (error) {
+//     res.status(500).json({ message: 'Erro ao buscar livro', error: error.message })
+//   }
+// };
+
+// // cadastrar novo livro
+// export const cadastrarLivro = async (req, res) => {
+//   try {
+//     const {
+//       book_isbn,
+//       book_title,
+//       book_subtitle,
+//       book_author,
+//       book_publisher,
+//       book_year_original_publication,
+//       book_year_edition_publication,
+//       book_url_cover,
+//       book_language,
+//       book_format,
+//       book_page_number,
+//       book_genre
+//     } = req.body
+
+//     const query = `
+//       INSERT INTO books (
+//         book_isbn, book_title, book_subtitle, book_author, book_publisher,
+//         book_year_original_publication, book_year_edition_publication,
+//         book_url_cover, book_language, book_format, book_page_number, book_genre
+//       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+//     `
+
+//     const [result] = await pool.query(query, [
+//       book_isbn,
+//       book_title,
+//       book_subtitle,
+//       book_author,
+//       book_publisher,
+//       book_year_original_publication,
+//       book_year_edition_publication,
+//       book_url_cover,
+//       book_language,
+//       book_format,
+//       book_page_number,
+//       book_genre
+//     ])
+
+//     res.status(201).json({ message: 'Livro cadastrado com sucesso!', book_id: result.insertId })
+//   } catch (error) {
+//     res.status(500).json({ message: 'Erro ao cadastrar livro', error: error.message })
+//   }
+// };
+
+// // atualizar livro existente
+// export const atualizarLivro = async (req, res) => {
+//   try {
+//     const { id } = req.params
+//     const {
+//       book_isbn,
+//       book_title,
+//       book_subtitle,
+//       book_author,
+//       book_publisher,
+//       book_year_original_publication,
+//       book_year_edition_publication,
+//       book_url_cover,
+//       book_language,
+//       book_format,
+//       book_page_number,
+//       book_genre
+//     } = req.body
+
+//     const query = `
+//       UPDATE books SET
+//         book_isbn = ?, book_title = ?, book_subtitle = ?, book_author = ?, book_publisher = ?,
+//         book_year_original_publication = ?, book_year_edition_publication = ?,
+//         book_url_cover = ?, book_language = ?, book_format = ?, book_page_number = ?, book_genre = ?
+//       WHERE book_id = ?
+//     `
+
+//     const [result] = await pool.query(query, [
+//       book_isbn,
+//       book_title,
+//       book_subtitle,
+//       book_author,
+//       book_publisher,
+//       book_year_original_publication,
+//       book_year_edition_publication,
+//       book_url_cover,
+//       book_language,
+//       book_format,
+//       book_page_number,
+//       book_genre,
+//       id
+//     ])
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ message: 'Livro não encontrado para atualização' })
+//     }
+
+//     res.status(200).json({ message: 'Livro atualizado com sucesso!' })
+//   } catch (error) {
+//     res.status(500).json({ message: 'Erro ao atualizar livro', error: error.message })
+//   }
+// }
+
+// // deletar livro por id
+// export const excluirLivro = async (req, res) => {
+//   try {
+//     const { id } = req.params
+//     const [result] = await pool.query('DELETE FROM books WHERE book_id = ?', [id])
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ message: 'Livro não encontrado para exclusão' })
+//     }
+
+//     res.status(200).json({ message: 'Livro excluído com sucesso!' })
+//   } catch (error) {
+//     res.status(500).json({ message: 'Erro ao excluir livro', error: error.message })
+//   }
+// }
 
 
 
