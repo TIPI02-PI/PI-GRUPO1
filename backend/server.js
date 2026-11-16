@@ -8,12 +8,21 @@ import booksRoutes from './src/routes/booksRouters.js';
 dotenv.config();
 
 
+import cors from 'cors';
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    
+}));
+
 const PORT = process.env.EXPRESS_PORT || 3000;
 
 //static route for API
 app.use('/static', express.static('src/public'))
 
-app.use('/api', booksRoutes)
+app.use('/api', booksRoutes);
 
 // Heath check
 app.get('/', (req, res) => {

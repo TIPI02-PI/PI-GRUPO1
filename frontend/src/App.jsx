@@ -11,7 +11,7 @@ export default function App() {
         <Route path="/" element={<LandPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/register" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
   )

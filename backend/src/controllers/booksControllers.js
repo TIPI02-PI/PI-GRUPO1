@@ -3,7 +3,7 @@ import pool from '../config/db.js'
 // listar todos os livros
 export const listarLivros = async (req, res) => {
   try {
-    const [livros] = await pool.query('SELECT * FROM books_tb')
+    const [livros] = await pool.query('SELECT * FROM book_tb')
     res.status(200).json(livros)
   } catch (error) {
     res.status(500).json({ message: 'Erro ao buscar livros', error: error.message })
@@ -14,7 +14,7 @@ export const listarLivros = async (req, res) => {
 export const buscarLivro = async (req, res) => {
   try {
     const { id } = req.params
-    const [rows] = await pool.query('SELECT * FROM books_tb WHERE book_id = ?', [id])
+    const [rows] = await pool.query('SELECT * FROM book_tb WHERE book_id = ?', [id])
 
     if (rows.length === 0) {
       return res.status(404).json({ message: 'Livro não encontrado' })
@@ -48,7 +48,7 @@ export const cadastrarLivro = async (req, res) => {
     } = req.body
 
     const query = `
-      INSERT INTO books_tb (
+      INSERT INTO book_tb (
         book_isbn, book_title, book_subtitle, book_author, book_publisher,
         book_year_original_publication, book_year_edition_publication,
         book_url_cover, book_format, book_page_number, book_genre, language_id
@@ -96,7 +96,7 @@ export const atualizarLivro = async (req, res) => {
     } = req.body
 
     const query = `
-      UPDATE books_tb SET
+      UPDATE book_tb SET
         book_isbn = ?, book_title = ?, book_subtitle = ?, book_author = ?, book_publisher = ?, book_year_original_publication = ?, book_year_edition_publication = ?, book_url_cover = ?, book_format = ?, book_page_number = ?, book_genre = ?, language_id = ?
       WHERE book_id = ?
     `
@@ -131,7 +131,7 @@ export const atualizarLivro = async (req, res) => {
 export const excluirLivro = async (req, res) => {
   try {
     const { id } = req.params
-    const [result] = await pool.query('DELETE FROM books_tb WHERE book_id = ?', [id])
+    const [result] = await pool.query('DELETE FROM book_tb WHERE book_id = ?', [id])
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: 'Livro não encontrado para exclusão' })

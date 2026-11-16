@@ -22,7 +22,7 @@ export default function LandPage() {
                 <Link to='/login' className='loginBtn'>
                     Entrar
                 </Link>
-                <Link to='/cadastro' className='registerBtn'>
+                <Link to='/register' className='registerBtn'>
                     Cadastrar
                 </Link>
 

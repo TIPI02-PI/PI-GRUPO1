@@ -15,8 +15,16 @@ USE dlirios_db;
 -- Drop the tables if they already exists to avoid conflicts when creating them again.
 --  ==============================================
 DROP TABLE IF EXISTS book_languages;
-DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS book_formats;
+DROP TABLE IF EXISTS book_genres;
+DROP TABLE IF EXISTS book_tb;
+DROP TABLE IF EXISTS user_tb;
 
+
+
+--  ============================================
+-- Create the tables with the specified structure.
+--  ============================================
 
 CREATE TABLE IF NOT EXISTS book_languages (
   language_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -27,36 +35,89 @@ CREATE TABLE IF NOT EXISTS book_languages (
   --  Recommended to use BCP 47 codes for language representation
 
 
-)
+);
 
 
-CREATE TABLE IF NOT EXISTS books_tb (
+CREATE TABLE IF NOT EXISTS book_genres (
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
+    genre_name VARCHAR(100) NOT NULL UNIQUE
+
+);
+
+CREATE TABLE IF NOT EXISTS book_formats (
+    format_id INT AUTO_INCREMENT PRIMARY KEY,
+    format_name VARCHAR(50) NOT NULL UNIQUE
+
+);
+
+CREATE TABLE IF NOT EXISTS book_authors (
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    --  Author Identification----------------
+    author_first_name VARCHAR(100) NOT NULL,
+    author_last_name VARCHAR(100) NOT NULL,
+    author_birthdate DATE NOT NULL,
+    author_death_date DATE NULL,
+/*    
+    -- author_nationality 
+    -- author_biography
+    -- author_awards TEXT NULL,
+    -- author_website,
+*/
+    --  Author Information----------------
+    author_biography TEXT DEFAULT NULL,
+    --  Author Photo----------------
+    author_photo_url VARCHAR(255) NULL,
+    --  Author timestamps----------------
+    author_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    author_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+    -- author_deleted_at TIMESTAMP NULL
+
+);
+
+CREATE TABLE IF NOT EXISTS book_tb (
   book_id INT AUTO_INCREMENT PRIMARY KEY,
-  -- Book Identification
+  -- Book Identification----------------
   book_isbn VARCHAR(20) NOT NULL UNIQUE,
   book_title VARCHAR(255) NOT NULL,
   book_subtitle VARCHAR(255) DEFAULT NULL,
-  -- Book Publication Information
+  -- Book Publication Information----------------
   book_author VARCHAR(255) NOT NULL,
   book_publisher VARCHAR(255) DEFAULT NULL,
   book_year_original_publication SMALLINT DEFAULT NULL,
   book_year_edition_publication SMALLINT DEFAULT NULL,
-  -- Book cover
+  -- Book cover----------------
   book_url_cover VARCHAR(500) DEFAULT NULL,
-  -- Book characteristics
-  book_format VARCHAR(50) DEFAULT NULL,
+  -- Book characteristics----------------
+--   book_format VARCHAR(50) DEFAULT NULL,
   book_page_number INT DEFAULT NULL,
-  book_genre VARCHAR(100) DEFAULT NULL,
-  -- Book Timestamps
+--   book_genre VARCHAR(100) DEFAULT NULL,
+  -- Book Timestamps----------------
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  -- Foreign Keys
-  -- Book Language Information
+  -- Foreign Keys----------------
+  -- Book Language Information----------------
   language_id INT NOT NULL,
+  genre_id INT NOT NULL,
+  format_id INT NOT NULL,
+
 
   CONSTRAINT fk_books_languages
     FOREIGN KEY (language_id)
     REFERENCES book_languages(language_id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+
+  CONSTRAINT fk_books_genres
+    FOREIGN KEY (genre_id)
+    REFERENCES book_genres(genre_id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+
+  CONSTRAINT fk_books_formats
+    FOREIGN KEY (format_id)
+    REFERENCES book_formats(format_id)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
 
@@ -89,8 +150,38 @@ VALUES
     ('日本語', 'ja');
 
 
+INSERT INTO book_genres (
+    genre_name
+)
+VALUES
+    ('Romance'),
+    ('Ficção Científica'),
+    ('Fantasia'),
+    ('Mistério'),
+    ('Terror'),
+    ('Aventura'),
+    ('Histórico'),
+    ('Biografia'),
+    ('Poesia'),
+    ('Drama'),
+    ('Naturalismo');
 
-INSERT INTO books_tb (
+
+INSERT INTO book_formats (
+    format_name
+)
+VALUES
+    ('Físico'),
+    ('E-book'),
+    ('Audiobook'),
+    ('PDF'),
+    ('EPUB'),
+    ('MOBI'),
+    ('Hardcover'),
+    ('Paperback');
+
+
+INSERT INTO book_tb (
     book_isbn,
     book_title,
     book_subtitle,
@@ -99,13 +190,12 @@ INSERT INTO books_tb (
     book_year_original_publication,
     book_year_edition_publication,
     book_url_cover,
-    book_format,
     book_page_number,
-    book_genre,
-    language_id
+    language_id,
+    genre_id,
+    format_id
 )
 VALUES
-
 (
     '9788535902778',
     'Dom Casmurro',
@@ -115,14 +205,11 @@ VALUES
     1899,
     2019,
     'https://exemplo.com/capa-dom-casmurro.jpg',
-    'Físico',
     256,
-    'Romance',
-    (SELECT language_id
-     FROM book_languages
-     WHERE language_tag = 'pt-BR')
+    (SELECT language_id FROM book_languages WHERE language_tag = 'pt-BR'),
+    (SELECT genre_id FROM book_genres WHERE genre_name = 'Romance'),
+    (SELECT format_id FROM book_formats WHERE format_name = 'E-book')
 ),
-
 (
     '9788535914849',
     'O Cortiço',
@@ -132,12 +219,10 @@ VALUES
     1890,
     2013,
     'https://exemplo.com/capa-o-cortico.jpg',
-    'E-book',
     304,
-    'Naturalismo',
-    (SELECT language_id
-     FROM book_languages
-     WHERE language_tag = 'pt-BR')
+    (SELECT language_id FROM book_languages WHERE language_tag = 'pt-BR'),
+    (SELECT genre_id FROM book_genres WHERE genre_name = 'Naturalismo'),
+    (SELECT format_id FROM book_formats WHERE format_name = 'E-book')
 );
 
 
@@ -175,17 +260,10 @@ CREATE TABLE IF NOT EXISTS user_tb (
     user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
  
--- =================================================
--- Does not delete these queries, everything allright? 
--- =================================================
 
-SHOW TABLES;
 
-USE dlirios_db;
-SELECT * FROM user_tb
 
 SHOW CREATE TABLE user_tb;
-DROP TABLE user_tb;
 
 
 
@@ -198,29 +276,6 @@ DROP TABLE user_tb;
 -- --     REFERENCES associative_user_ia_chat (id_user_vestibular);
 
 
-
-
--- -- );
-
-
-CREATE TABLE author (
-    author_id INT AUTO_INCREMENT PRIMARY KEY,
-    author_first_name VARCHAR(100) NOT NULL,
-    author_last_name VARCHAR(100) NOT NULL,
-    author_birthdate DATE NOT NULL
-
-);
-
--- CREATE TABLE book(
---     book_id INT AUTO_INCREMENT PRIMARY KEY,
---     book_title VARCHAR(100) NOT NULL,
---     book_release_date DATE NOT NULL,
---     fk_author_id INT NOT NULL, 
-
---     FOREIGN KEY (fk_author_id)
---         REFERENCES author(author_id)
-
--- );
 
 
 

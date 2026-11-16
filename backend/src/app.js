@@ -9,7 +9,7 @@ const app = express();
 
 // Middlewares
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 
 // --- Register Routes ---
 app.use('/api/auth', authRoutes); // <-- All auth routes will now start with /api/auth 
